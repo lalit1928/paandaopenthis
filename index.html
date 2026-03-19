@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Paanda Open This ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+}
+
+/* pages */
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 30px 20px;
+}
+
+.active {
+    display: block;
+}
+
+/* PAGE 1 */
+#page1 {
+    background: url('bg.jpg') no-repeat center/cover;
+    color: #8b2e2e;
+}
+
+#page1::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,245,235,0.65);
+    top: 0;
+    left: 0;
+}
+
+#page1 * {
+    position: relative;
+    z-index: 2;
+}
+
+/* PAGE 2 & 3 */
+#page2, #page3 {
+    background: #7b1e1e;
+    color: #fff3e6;
+}
+
+/* FIX VISIBILITY */
+#page2 p, #page2 h1,
+#page3 p, #page3 h1, #page3 h2 {
+    color: #fff3e6;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+
+/* text */
+h1 {
+    font-size: 36px;
+    letter-spacing: 1px;
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+/* input */
+input {
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+}
+
+/* button */
+button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* cursor */
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 20px;
+    background: #fff3e6;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* photos */
+.photo-box img {
+    width: 80%;
+    border-radius: 20px;
+}
+
+.caption {
+    margin-top: 10px;
+}
+
+/* 🎆 FIREWORKS */
+.particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: burst 1s ease-out forwards;
+}
+
+@keyframes burst {
+    to {
+        transform: translate(var(--x), var(--y));
+        opacity: 0;
+    }
+}
+
+/* ❤️ POPUP */
+#lovePopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 32px;
+    font-family: 'Great Vibes', cursive;
+    color: #fff3e6;
+    background: rgba(0,0,0,0.75);
+    padding: 20px 40px;
+    border-radius: 20px;
+    transition: 0.4s;
+}
+
+.show {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+    <h1>All I know since yesterday</h1>
+    <p>is everything has changed<br>except our love</p>
+
+    <p>Enter password to see what’s there for u paanda</p>
+
+    <input type="password" id="pass"><br>
+    <button onclick="checkPass()">Open</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+    <h1>Hey!</h1>
+    <p id="typing"></p>
+    <span class="cursor"></span><br><br>
+    <button onclick="goToPage3()">Next ❤️</button>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+
+<div class="photo-box">
+<img src="photo1.jpg">
+<p class="caption">i am more romantic than this now 💭</p>
+</div>
+
+<div class="photo-box">
+<img src="photo2.jpg">
+<p class="caption">I still believe we r for eachother ❤️</p>
+</div>
+
+<div class="photo-box">
+<img src="photo3.jpg">
+<p class="caption">You r still in my eyes 👀</p>
+</div>
+
+<div class="photo-box">
+<img src="photo4.jpg">
+<p class="caption">i changed my aesthetics according to u 🎀</p>
+</div>
+
+<h2>Will you go on a date with me?</h2>
+
+<button onclick="yesClick()">Yes ❤️</button>
+<button onclick="callMe()">Call Me 📞</button>
+
+</div>
+
+<div id="lovePopup">I love u paanda ❤️</div>
+
+<script>
+
+/* PASSWORD */
+function checkPass() {
+    if (document.getElementById("pass").value === "2201") {
+        page1.classList.remove("active");
+        page2.classList.add("active");
+        typeText();
+    } else {
+        alert("Wrong password 😢");
+    }
+}
+
+/* TYPING */
+let text = [
+"I've been thinking about you,",
+"the weather is looking nice",
+"and I thought life is too short",
+"to not remind people how much they meant to you.",
+"",
+"So I'm doing this to remind you",
+"that I love u",
+"and hope u r ready for the adventure",
+"with the adventure buddy ❤️"
+];
+
+let i=0,j=0;
+
+function typeText(){
+    if(i<text.length){
+        if(j<text[i].length){
+            typing.innerHTML+=text[i].charAt(j);
+            j++;
+            setTimeout(typeText,60);
+        } else {
+            typing.innerHTML+="<br>";
+            i++; j=0;
+            setTimeout(typeText,700);
+        }
+    }
+}
+
+/* PAGE SWITCH */
+function goToPage3(){
+    page2.classList.remove("active");
+    page3.classList.add("active");
+}
+
+/* 🎆 COLORFUL FIREWORKS */
+function burstFirework(){
+    const colors = ["#ff4d6d","#ffd166","#06d6a0","#118ab2","#f72585","#ffffff"];
+
+    for(let i=0;i<70;i++){
+        let p=document.createElement("div");
+        p.className="particle";
+
+        p.style.background = colors[Math.floor(Math.random()*colors.length)];
+        p.style.left = 50 + "vw";
+        p.style.top = 50 + "vh";
+
+        p.style.setProperty('--x',(Math.random()*500-250)+"px");
+        p.style.setProperty('--y',(Math.random()*500-250)+"px");
+
+        document.body.appendChild(p);
+
+        setTimeout(()=>p.remove(),1000);
+    }
+}
+
+/* YES */
+function yesClick(){
+    for(let i=0;i<6;i++){
+        setTimeout(burstFirework,i*300);
+    }
+
+    document.getElementById("lovePopup").classList.add("show");
+}
+
+/* CALL */
+function callMe(){
+    window.location.href="tel:+91XXXXXXXXXX";
+}
+
+</script>
+
+</body>
+</html>
